@@ -1,0 +1,19 @@
+<form>
+  @for(item of transaction().items; track item.itemId){
+    <div>
+      <ul>
+        <li>description: {{item.description}}</li>
+        <li>quantity: <input [(ngModel)]="item.quantity" [name]="'quantity'+item.itemId"/></li>
+        <li>amount per item: {{item.amount| currency:'USD'}}</li>
+        <li>subtotal: {{item.quantity * item.amount| currency:'USD'}} </li>
+      </ul>
+    </div>
+  }
+  <div>
+    total: {{transactionTotal()| currency:'USD'}}
+  </div>
+  <button (click)="saveTransaction(transaction())">save transaction</button>
+</form>
+
+
+

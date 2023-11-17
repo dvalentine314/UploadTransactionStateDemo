@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { ApplicationStateService } from './stores/application-state.service';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'SubmitTransaction';
+  loading = this.applicationState.transactionsLoading;
+
+  constructor(private applicationState: ApplicationStateService){}
 }
