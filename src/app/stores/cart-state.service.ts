@@ -1,15 +1,15 @@
 import { Injectable, WritableSignal, signal, computed, Signal } from '@angular/core';
-import { CustomerTransaction } from '../models/customer-transaction';
+import { ShoppingCart } from '../models/customer-cart';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionStateService {
+export class CartStateService {
 
-  private transaction: WritableSignal<CustomerTransaction> = signal({items:[]});
+  private shoppingCart: WritableSignal<ShoppingCart> = signal({items:[]});
 
-  transactionTotal = computed(() => {
-    return this.transaction().items.reduce((total, item) => {
+  cartTotal = computed(() => {
+    return this.shoppingCart().items.reduce((total, item) => {
       return total + (item.amount * item.quantity);
     }, 0);
   });
@@ -19,12 +19,12 @@ export class TransactionStateService {
   }
 
   /** a way to get the Transaction in a ReadOnly way*/
-  getTransaction(): Signal<CustomerTransaction>{
-    return this.transaction;
+  getCart(): Signal<ShoppingCart>{
+    return this.shoppingCart;
   }
 
-  updateTransaction(transaction: CustomerTransaction){
-    this.transaction.update(oldTransactionValue=>{
+  updateTransaction(transaction: ShoppingCart){
+    this.shoppingCart.update(oldTransactionValue=>{
       return {...oldTransactionValue, ...transaction};
     })
   }
@@ -34,7 +34,7 @@ export class TransactionStateService {
 
   /** just for demonstration. IRL this might be built through user input over multiple components */
   initializeTestData(){
-    this.transaction.set({
+    this.shoppingCart.set({
       customerId: 1,
       items: [
         {itemId:1, description: 'Item 1', amount: 1.00, quantity: 1},

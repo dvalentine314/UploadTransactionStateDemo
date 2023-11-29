@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ApplicationStateService } from '../stores/application-state.service';
 import { TransactionAccessService } from '../access/transaction-access.service';
-import { TransactionStateService } from '../stores/transaction-state.service';
+import { CartStateService } from '../stores/cart-state.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionManagerService {
+export class CartManagerService {
 
   constructor(
     private applicationState: ApplicationStateService,
     private transactionAccess: TransactionAccessService,
-    private transactionState: TransactionStateService
+    private cartState: CartStateService
   ) {}
 
   saveTransaction(transaction:{
@@ -25,7 +25,7 @@ export class TransactionManagerService {
     this.transactionAccess.saveTransaction(transaction).subscribe(z=>{
       if(z.success){
         this.applicationState.setTransactionsLoading(false);
-        this.transactionState.updateTransaction({customerId: transaction.customerId, items:[]});
+        this.cartState.updateTransaction({customerId: transaction.customerId, items:[]});
       }
     });
   }

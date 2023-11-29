@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { TransactionFormComponent } from './views/transaction-form/transaction-form.component';
+import { ShoppingCartComponent } from './views/transaction-form/shopping-cart.component';
 
 export const routes: Routes = [
-  { path: '**', component: TransactionFormComponent, pathMatch: 'full' },
+  { path: '**', component: ShoppingCartComponent, pathMatch: 'full' },
 ];

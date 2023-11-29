@@ -1,4 +1,4 @@
-export interface CustomerTransaction{
+export interface ShoppingCart{
   customerId?: number,
   items: Array<{
     itemId: number,

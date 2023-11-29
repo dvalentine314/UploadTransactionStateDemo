@@ -1,6 +1,7 @@
 
 @if (loading()) {
   <h1>Loading</h1>
+} @else {
+  <router-outlet></router-outlet>
 }
 
-<router-outlet></router-outlet>

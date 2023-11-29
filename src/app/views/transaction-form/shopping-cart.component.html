@@ -1,5 +1,5 @@
 <form>
-  @for(item of transaction().items; track item.itemId){
+  @for(item of cart().items; track item.itemId){
     <div>
       <ul>
         <li>description: {{item.description}}</li>
@@ -10,9 +10,9 @@
     </div>
   }
   <div>
-    total: {{transactionTotal()| currency:'USD'}}
+    total: {{cartTotal()| currency:'USD'}}
   </div>
-  <button (click)="saveTransaction(transaction())">save transaction</button>
+  <button (click)="saveTransaction(cart())">save transaction</button>
 </form>
 
 
